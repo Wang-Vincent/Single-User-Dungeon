@@ -3,8 +3,20 @@ This file must contain your main function. This is the file
 the repl.it interpreter will execute using the command python game.py.
 Team member: Sean Yang & Vincent Wang
 """
+import doctest
 import random
 import sys
+
+
+def intro():
+
+    print('You are a hardworking student in the prestigious BCIT CST program. It is the time of the year for midterm exam week again... \n \n Tonight is a Thursday night. You finished most of your midterms for other courses, leaving only one python midterm hackathon left to do on Friday. \n \n While you were studying hard for this last python midterm in your room, a mysterious voice, coming from nowhere, hypnotized you. \n \n When you finally regained your consciousness, you found out that you had been trapped inside a mysterious space with invisible walls around you. \n \n')
+
+    print('Suddenly, you see a very handsome man with a long beard. As this man approaches you, he begins to talk: "Greeting. I am Chris. I am here to assist you, Programmer." \n \n As Handsome Chris introduces himself, he begins to explain your situation with you. \n \n')
+
+    print('"Unfortunately, you have been trapped inside your own nightmare in perpetuity by a mysterious evil force. \n \n In order to wake up from your nightmare and make it to your midterm hackathon on time, you must follow my instructions." \n \n')
+
+    print('"I want to play a game." \n \n Says Handsome Chris, "In this game, {player_name}, you are trapped inside a 5*5, 25-cell mysterious space. \n \n Here you can enter [1, 2, 3, 4] to represent the north, south, east, and west to walk around in this space. \n \n However, when you reach the edge of the space, you will be blocked by an invisible wall. \n \n You have a starting 10 health points and 1d6 attack power. \n \n Each time you take a step, you will have a 25% chance of encountering a monster named Bug that looks like a bug, smells like a bug, and buzz like a bug. \n \n The monsters have 5 health points and 1d6 attack power. \n \n When you encounter a monster, you can choose to escape or fight until one party dies. \n \n If you choose to flee, the monster has a 10% chance to stab you back and deal 1d4 damage. If you choose to fight, it will be combat to the death. \n \n Before the start of each round of the battle, a 1d20 first strike decision will be made, and the party with the larger roll will strike first. \n \n The battle is over when either one of you dies. \n \n When you are not in battle, you can get 2 points of health regeneration if you move a step without encountering any monsters. \n \n If you successfully kill 7 bug monsters and survive, you will be victorious and wake up from this nightmare. \n \n If you die, you will fail and fall into a 72-hour sleep, thus missing your midterm hackathon and weekend."')
 
 
 def get_user_choice():
@@ -158,7 +170,6 @@ def validate_and_move(character, direction, board):
     Sorry, I can't understand you.
     False
     """
-
     directions = (1, 2, 3, 4)
     if direction in directions:
         initial_position_x = character[0]
@@ -166,15 +177,30 @@ def validate_and_move(character, direction, board):
         move_character(character, direction)
         if character[0] not in range(1, len(board[0]) + 1):
             character[0] = initial_position_x
+            print("Ah, you can't go that way.")
             return False
         elif character[1] not in range(1, len(board) + 1):
             character[1] = initial_position_y
+            print("Ah, you can't go that way.")
             return False
         else:
             return True
     else:
         print("Sorry, I can't understand you.")
         return False
+
+
+def check_back_stab():
+    """Check if player got back stabbed
+
+    Check if the player got back stabbed by the monster, which has 10% chance to happen
+
+    :precondition: no precondition, the function will always execute successfully
+    :postcondition: return 10 in randint(1, 10) representing a 10% chance of backstabbing, otherwise it return nothing to represent false
+    :return: a integer 10 if random.randint(1, 10) == 10
+    """
+    return random.randint(1, 10) == 10
+
 
 
 def health_regen(character):
@@ -202,3 +228,18 @@ def health_regen(character):
         character[2] += 2
     elif character[2] == 9:
         character[2] = 10
+
+
+def check_for_monsters():
+    """
+    check if player encounter monsters when they move.
+
+    Check if the player encounter monsters when they move, which has 25% chance to happen
+
+    :precondition: no precondition, the function will always execute successfully
+    :postcondition: return 4 in randint(1, 4) representing a 25% chance of encounter, otherwise it return nothing to represent false
+    :return: a integer 4 if random.randint(1, 4) == 4
+    """
+    return random.randint(1, 4) == 4
+
+
