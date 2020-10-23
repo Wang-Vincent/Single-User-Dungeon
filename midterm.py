@@ -134,7 +134,7 @@ def validate_and_move(character, direction, board):
     :precondition: character list must contains character's current x and y position, its heal and name in order;
     direction must be one of 1, 2, 3, 4; board has to be a list which contains five [1,2,3,4,5] as its element.
     :postcondition: Correctly validate a move; perform the corresponding move if it is valid
-    :return: True if the move is valid; Otherwise reture False
+    :return: True if the move is valid; Otherwise reture False and print error message if needed
 
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
     >>> test_player = [3,5,3,'okopogo']
@@ -145,11 +145,11 @@ def validate_and_move(character, direction, board):
     >>> validate_and_move(test_player, 2, test_board)
     True
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
-    >>> test_player = [3,5,3,'okopogo']
+    >>> test_player = [1,5,3,'okopogo']
     >>> validate_and_move(test_player, 3, test_board)
     False
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
-    >>> test_player = [3,5,3,'okopogo']
+    >>> test_player = [1,5,3,'okopogo']
     >>> validate_and_move(test_player, 4, test_board)
     True
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
