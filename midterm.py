@@ -403,7 +403,7 @@ def combat_single_round(character_health, monster_health):
 
     Determine whose initiative roll is larger and can attack first.
 
-    :param player_health: an integer representing the player's health
+    :param character_health: an integer representing the player's health
     :param monster_health: an integer representing the monster's health
     :precondition: both parameter must be positive integers
     :postcondition: whoever's rolls is larger initiates the combat
