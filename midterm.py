@@ -51,7 +51,8 @@ def flee_or_not():
 
 def exit_the_game(play_input):
     """Quit the game if user enter "quit".
-
+    
+    :paramater: play_input, 
     :precondition: user must input "quit" to quit the game.
     :postcondition: quit the game if user input "quit". Otherwise return user input.
     :param play_input: user input strings.
@@ -248,6 +249,25 @@ def check_for_monsters():
     """
     return random.randint(1, 4) == 4
 
+    
+def flee(player_health):
+    """check if player take damage.
+
+    Check if the player encounter monsters when they move, which has 25% chance to happen
+    
+    :paramater:
+    :precondition: no precondition, the function will always execute successfully
+    :postcondition: return 4 in randint(1, 4) representing a 25% chance of encounter, otherwise it return nothing to represent false
+    :return: a integer 4 if random.randint(1, 4) == 4
+    """
+    if check_back_stab():
+        damage = random.randint(1, 4)
+        player_health -= damage
+        print(f"While you are busy fleeing the scene, your enemy back-stabs you and deal {damage} damage!")
+    else:
+        print("You successfully escape! Live to fight another day!")
+    return player_health
+
 
 def dead(character):
     """check if player is dead.
@@ -277,3 +297,20 @@ def get_initiative():
     :return: a list which first element representing the player's initiative value and the second representing the monster's initiative value
     """
     return [random.randint(1, 20), random.randint(1, 20)]
+
+
+def deal_random_damage(health):
+    """Deal random damage to given health
+    
+    Reduce health value by a random damage integer from 1 to 6
+
+    :param health: an integer representing the target's health
+    :precondition: health must be a integer
+    :postcondition: reduced health by correct amount with in 1 to 6 inclusive
+    :return: an integer damaged health
+    """
+    damage = random.randint(1, 6)
+    health -= damage
+    print(f"The strike deal {damage} damage!")
+    return health
+
