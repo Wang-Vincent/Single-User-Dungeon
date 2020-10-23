@@ -157,21 +157,21 @@ def validate_and_move(character, direction, board):
 
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
     >>> test_player = [3,5,3,'okopogo']
-    >>> validate_and_move(test_player, 1, test_board)
+    >>> validate_and_move(test_player, "1", test_board)
     Ah, you can't go that way.
     False
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
     >>> test_player = [3,5,3,'okopogo']
-    >>> validate_and_move(test_player, 2, test_board)
+    >>> validate_and_move(test_player, "2", test_board)
     True
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
     >>> test_player = [1,5,3,'okopogo']
-    >>> validate_and_move(test_player, 3, test_board)
+    >>> validate_and_move(test_player, "3", test_board)
     Ah, you can't go that way.
     False
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
     >>> test_player = [1,5,3,'okopogo']
-    >>> validate_and_move(test_player, 4, test_board)
+    >>> validate_and_move(test_player, "4", test_board)
     True
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
     >>> test_player = [3,5,3,'okopogo']
@@ -179,7 +179,7 @@ def validate_and_move(character, direction, board):
     Sorry, I can't understand you.
     False
     """
-    directions = (1, 2, 3, 4)
+    directions = ("1", "2", "3", "4")
     if direction in directions:
         initial_position_x = character[0]
         initial_position_y = character[1]
@@ -385,13 +385,13 @@ def combat_single_round(character_health, monster_health):
 
 
 def combat_result(player_health):
-  """Update and return player's health after the combat.
+    """Update and return player's health after the combat.
 
     :param player_health: an integer representing the target's health
     :precondition: health must be a integer
     :postcondition: update the health by correct amount after the combat deductions
     :return: an integer representing player's updated health points
-  """
+    """
     print("A wild runtime error jumps out from the bush! Let the fight begin!")
     monster_health = 5
     if flee_or_not() == 'Y':
