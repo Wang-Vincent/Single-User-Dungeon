@@ -282,22 +282,23 @@ def flee(player_health):
     return player_health
 
 
-def dead(character):
+def dead(health):
     """check if player is dead.
 
-    Check if character[2], the player's health point is less than or equal to 0.
+    chec if target's health is less than or equal to zero
 
-    :precondition: no precondition, the function will always execute successfully
-    :postcondition: return 0 if character[2] is less than or equal to 0, otherwise it return nothing to represent false
-    :return: a integer 0 if character[2] <= 0
-    >>> test_character = [2, 3, 10, 'test_player']   
-    >>> dead(test_character)
-    False 
-    >>> test_character = [2, 3, 0, 'test_player']   
-    >>> dead(test_character)
+    :precondition: health must be an integer
+    :postcondition: tell if the target is dead or not correctly
+    :return: True if target health is below 0; otherwise return False
+    
+    >>> dead(0)
+    True 
+    >>> dead(2)
+    False
+    >>> dead(-2)
     True 
     """
-    return character[2] <= 0
+    return health <= 0
 
 
 def get_initiative():
@@ -398,10 +399,15 @@ def monster_initiative_combat(character_health, monster_health, initiative):
 
 
 def combat_single_round(character_health, monster_health):
-    """determine if player or monster can attack first each combat round.
+    """Determine if player or monster can attack first each combat round.
 
-      
-    
+      Determine whose initiative roll is larger and can attack first.
+
+    :param player_health: an integer representing the player's health
+    :param monster_health: an integer representing the monster's health
+    :precondition: both parameter must be positive integers
+    :postcondition: whoever's rolls is larger in
+    :return: an integer representing player's updated health points   
     """
     initiative = get_initiative()
     if initiative[0] > initiative[1]:
@@ -434,13 +440,13 @@ def combat_result(player_health):
     return player_health
 
 
-def game():
+def main():
     """
     
     Drive the program
     
     """
-
+    doctest.testmod()
     board = make_board()
     character = make_character(get_user_name(), board)
     while not dead(character[2]):
@@ -456,6 +462,6 @@ def game():
                 print("You are safe and immersed in a healing breeze.")
     print(f"You health bar is empty and you are dead. End of game.")
 
-    if __name__ == '__main__':
-        doctest.testmod(verbose=True)
-        game()
+
+if __name__ == '__main__':
+    main()
