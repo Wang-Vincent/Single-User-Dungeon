@@ -370,3 +370,15 @@ def monster_initiative_combat(character_health, monster_health, initiative):
         else:
             print(f"You run out of HP. You are defeated by a runtime error.")
     return [character_health, monster_health]
+
+
+def combat_single_round(character_health, monster_health):
+    """
+    
+    """
+    initiative = get_initiative()
+    if initiative[0] > initiative[1]:
+        combat_single_round_result = player_initiative_combat(character_health, monster_health, initiative)
+    else:
+        combat_single_round_result = monster_initiative_combat(character_health, monster_health, initiative)
+    return combat_single_round_result
