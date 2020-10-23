@@ -64,7 +64,7 @@ def flee_or_not():
 def exit_the_game(play_input):
     """Quit the game if user enter "quit".
     
-    :paramater play_input: a string
+    :parameter play_input: a string
     :precondition: user must input "quit" to quit the game.
     :postcondition: quit the game if user input "quit". Otherwise return user input.
     :param play_input: user input strings.
@@ -103,7 +103,7 @@ def make_character(player_name, board):
     :param board: a two dimensional list representing the whole dungeon
     :precondition: board has to be a list which contains five [1,2,3,4,5] as its element.
     :postcondition: generate character profile with correct information
-    :return: a list which contain the player's name, its health, start x postion and y position within board.
+    :return: a list which contain the player's name, its health, start x position and y position within board.
     
     """
     position_x = random.randint(1, len(board[0]))
@@ -266,9 +266,9 @@ def flee(player_health):
 
     check if player take damage from backstabbing when fleeing. If they do, minus the damage from player's HP.
     
-    :paramater: player_health: a integer in the list representing player's HP
+    :parameter player_health: a integer in the list representing player's HP
     :precondition: must be a positive integer
-    :postcondition: player_health - random.randint(1, 4) if they got backstabbed
+    :postcondition: player_health - random.randint(1, 4) if they got back-stabbed
     :return: a integer representing player's updated health points
     """
     if check_back_stab():
@@ -302,12 +302,12 @@ def dead(health):
 
 
 def get_initiative():
-    """Create inititive value in a combat
+    """Create initiative value in a combat
 
-    Create inititive value for both player and monster
+    Create initiative value for both player and monster
     
     :precondition: no precondition, the function will always execute successfully
-    :postcondition: correctly create two inititive value for both player and monster
+    :postcondition: correctly create two initiative value for both player and monster
     :return: a list which first element representing the player's initiative value and the second representing the monster's initiative value
     """
     return [random.randint(1, 20), random.randint(1, 20)]
@@ -321,7 +321,7 @@ def deal_random_damage(health):
     :param health: an integer representing the target's health
     :precondition: health must be a integer
     :postcondition: reduced health by correct amount with in 1 to 6 inclusive
-    :return: an integer damaged health; print out damange information
+    :return: an integer damaged health; print out damage information
     """
     damage = random.randint(1, 6)
     health -= damage
