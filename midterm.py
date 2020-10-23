@@ -52,7 +52,7 @@ def flee_or_not():
 def exit_the_game(play_input):
     """Quit the game if user enter "quit".
     
-    :paramater: play_input, 
+    :paramater: play_input: a string
     :precondition: user must input "quit" to quit the game.
     :postcondition: quit the game if user input "quit". Otherwise return user input.
     :param play_input: user input strings.
@@ -241,7 +241,7 @@ def health_regen(character):
 def check_for_monsters():
     """check if player encounter monsters when they move.
 
-    Check if the player encounter monsters when they move, which has 25% chance to happen
+    Check if the player encounter monsters when they move, which has 25% chance to happen.
 
     :precondition: no precondition, the function will always execute successfully
     :postcondition: return 4 in randint(1, 4) representing a 25% chance of encounter, otherwise it return nothing to represent false
@@ -251,14 +251,14 @@ def check_for_monsters():
 
     
 def flee(player_health):
-    """check if player take damage.
+    """check if player take damage from backstabbing when fleeing.
 
-    Check if the player encounter monsters when they move, which has 25% chance to happen
+    check if player take damage from backstabbing when fleeing. If they do, minus the damage from player's HP.
     
-    :paramater:
-    :precondition: no precondition, the function will always execute successfully
-    :postcondition: return 4 in randint(1, 4) representing a 25% chance of encounter, otherwise it return nothing to represent false
-    :return: a integer 4 if random.randint(1, 4) == 4
+    :paramater: player_health: a integer in the list representing player's HP
+    :precondition: must be a positive integer
+    :postcondition: player_health - random.randint(1, 4) if they got backstabbed
+    :return: a integer representing player's updated health points
     """
     if check_back_stab():
         damage = random.randint(1, 4)
@@ -307,10 +307,38 @@ def deal_random_damage(health):
     :param health: an integer representing the target's health
     :precondition: health must be a integer
     :postcondition: reduced health by correct amount with in 1 to 6 inclusive
-    :return: an integer damaged health
+    :return: an integer damaged health; print out damange information
     """
     damage = random.randint(1, 6)
     health -= damage
     print(f"The strike deal {damage} damage!")
     return health
+
+
+def player_initiative_combat(character_health, monster_health, initiative):
+    """Create fight result for a player initiative combat
+
+    Create the result health for both player and monster after a player initiative combat
+
+    :param character_health: an integer representing the player's health
+    :param monster_health: an integer representing the monster's health
+    :param initiative: a list contain initiative values for both the player and monster
+    :precondition: player's health must be a integer between 1 to 10 inclusive; monster's health must be a integer between 1 to 5 inclusive, initiative must be a list contain initiative values between 1 to 20 inclusive for both the player and monster
+    :postcondition: create correct health result for both player and monster
+    :return: a list contains damaged character_health and damaged monster_health; and print statements about battle result
+    """
+    print(f"You roll {initiative[0]} and your silly opponent roll {initiative[1]}, "
+          f"now it's your turn to punish the bug!")
+    monster_health = deal_random_damage(monster_health)
+    if not dead(monster_health):
+        print(f"The bug is still alive with {monster_health} remaining! It is about to strike you back!")
+        character_health = deal_random_damage(character_health)
+        if not dead(character_health):
+            print(f"You still have {character_health} health! Let's revenge in the next round of fight!")
+        else:
+            print(f"You run out of HP. You are defeated by a runtime error.")
+    else:
+        print(f"The bug's HP is now 0. You killed the bug!")
+    return [character_health, monster_health]
+
 
