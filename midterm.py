@@ -16,7 +16,7 @@ def intro():
 
     print('"Unfortunately, you have been trapped inside your own nightmare in perpetuity by a mysterious evil force. \n \n In order to wake up from your nightmare and make it to your midterm hackathon on time, you must follow my instructions." \n \n')
 
-    print('"I want to play a game." \n \n Says Handsome Chris, "In this game, {player_name}, you are trapped inside a 5*5, 25-cell mysterious space. \n \n Here you can enter [1, 2, 3, 4] to represent the north, south, east, and west to walk around in this space. \n \n However, when you reach the edge of the space, you will be blocked by an invisible wall. \n \n You have a starting 10 health points and 1d6 attack power. \n \n Each time you take a step, you will have a 25% chance of encountering a monster named Bug that looks like a bug, smells like a bug, and buzz like a bug. \n \n The monsters have 5 health points and 1d6 attack power. \n \n When you encounter a monster, you can choose to escape or fight until one party dies. \n \n If you choose to flee, the monster has a 10% chance to stab you back and deal 1d4 damage. If you choose to fight, it will be combat to the death. \n \n Before the start of each round of the battle, a 1d20 first strike decision will be made, and the party with the larger roll will strike first. \n \n The battle is over when either one of you dies. \n \n When you are not in battle, you can get 2 points of health regeneration if you move a step without encountering any monsters. \n \n If you successfully kill 7 bug monsters and survive, you will be victorious and wake up from this nightmare. \n \n If you die, you will fail and fall into a 72-hour sleep, thus missing your midterm hackathon and weekend."')
+    print('"I want to play a game." \n \n Says Handsome Chris, "In this game, you are trapped inside a 5*5, 25-cell mysterious space. \n \n Here you can enter [1, 2, 3, 4] to represent the north, south, east, and west to walk around in this space. \n \n However, when you reach the edge of the space, you will be blocked by an invisible wall. \n \n You have a starting 10 health points and 1d6 attack power. \n \n Each time you take a step, you will have a 25% chance of encountering a monster named Bug that looks like a bug, smells like a bug, and buzz like a bug. \n \n The monsters have 5 health points and 1d6 attack power. \n \n When you encounter a monster, you can choose to escape or fight until one party dies. \n \n If you choose to flee, the monster has a 10% chance to stab you back and deal 1d4 damage. If you choose to fight, it will be combat to the death. \n \n Before the start of each round of the battle, a 1d20 first strike decision will be made, and the party with the larger roll will strike first. \n \n The battle is over when either one of you dies. \n \n When you are not in battle, you can get 2 points of health regeneration if you move a step without encountering any monsters. \n \n If you successfully kill 7 bug monsters and survive, you will be victorious and wake up from this nightmare. \n \n If you die, you will fail and fall into a 72-hour sleep, thus missing your midterm hackathon and weekend."')
 
 
 def get_user_choice():
@@ -58,8 +58,7 @@ def exit_the_game(play_input):
 
 
 def make_board():
-    """
-    create a 2D list as the board of the game.
+    """create a 2D list as the board of the game.
 
     :precondition: BOARD_COLUMN and BOARD_ROW must be greater than 0
     :postcondition: create a 5*5 2D list 
@@ -151,6 +150,7 @@ def validate_and_move(character, direction, board):
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
     >>> test_player = [3,5,3,'okopogo']
     >>> validate_and_move(test_player, 1, test_board)
+    Ah, you can't go that way.
     False
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
     >>> test_player = [3,5,3,'okopogo']
@@ -159,6 +159,7 @@ def validate_and_move(character, direction, board):
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
     >>> test_player = [1,5,3,'okopogo']
     >>> validate_and_move(test_player, 3, test_board)
+    Ah, you can't go that way.
     False
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
     >>> test_player = [1,5,3,'okopogo']
@@ -204,8 +205,7 @@ def check_back_stab():
 
 
 def health_regen(character):
-    """
-    Regenerate Player's health points if they are in range(1, 9).
+    """Regenerate Player's health points if they are in range(1, 9).
     
     :param character: a 1D list representing player's status
     :precondition: character[2], aka player's health, must be in range(1, 9)
@@ -231,8 +231,7 @@ def health_regen(character):
 
 
 def check_for_monsters():
-    """
-    check if player encounter monsters when they move.
+    """check if player encounter monsters when they move.
 
     Check if the player encounter monsters when they move, which has 25% chance to happen
 
@@ -243,3 +242,13 @@ def check_for_monsters():
     return random.randint(1, 4) == 4
 
 
+def dead(character):
+    """check if player is dead.
+
+    Check if character[2], the player's health point is less than or equal to 0.
+
+    :precondition: no precondition, the function will always execute successfully
+    :postcondition: return 0 if character[2] is less than or equal to 0, otherwise it return nothing to represent false
+    :return: a integer 0 if character[2] <= 0
+    """
+    return character[2] <= 0
