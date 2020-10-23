@@ -106,39 +106,39 @@ def move_character(character, direction):
     Move character's current position by 1 towards given direction
 
     :param character: a one dimensional list containing the character's current status
-    :param direction: an integer representing a specific direction, 1 = north, 2 = south, 3 = west, 4 = east
+    :param direction: a string which contains an integer representing a specific direction, '1' = north, '2' = south, '3' = west, '4' = east
     :precondition: character list must contains character's current x and y position, its heal and name in order;
     direction must be one of 1, 2, 3, 4
     :postcondition: move character's position by one towards correct direction
     :return: None
 
     >>> test_character = [2, 3, 6, 'test_player']
-    >>> move_character(test_character, 1)
+    >>> move_character(test_character, '1')
     >>> print(test_character)
     [2, 4, 6, 'test_player']
 
     >>> test_character = [2, 3, 6, 'test_player']
-    >>> move_character(test_character, 2)
+    >>> move_character(test_character, '2')
     >>> print(test_character)
     [2, 2, 6, 'test_player']
 
     >>> test_character = [2, 3, 6, 'test_player']
-    >>> move_character(test_character, 3)
+    >>> move_character(test_character, '3')
     >>> print(test_character)
     [1, 3, 6, 'test_player']
-    
+
     >>> test_character = [2, 3, 6, 'test_player']
-    >>> move_character(test_character, 4)
+    >>> move_character(test_character, '4')
     >>> print(test_character)
     [3, 3, 6, 'test_player']
     """
-    if direction == 1 :
+    if direction == '1':
         character[1] += 1
-    elif direction == 2 :
+    elif direction == '2':
         character[1] -= 1
-    elif direction == 3:
+    elif direction == '3':
         character[0] -= 1
-    elif direction == 4:
+    elif direction == '4':
         character[0] += 1
 
 
@@ -148,7 +148,7 @@ def validate_and_move(character, direction, board):
     Validate if a move is valid, perform the move if it is valid
 
     :param character: a one dimensional list containing the character's current status
-    :param direction: an integer representing a specific direction, 1 = north, 2 = south, 3 = west, 4 = east
+    :param direction: a string which contains an integer representing a specific direction, '1' = north, '2' = south, '3' = west, '4' = east
     :param board: a two dimensional list representing the whole dungeon
     :precondition: character list must contains character's current x and y position, its heal and name in order;
     direction must be one of 1, 2, 3, 4; board has to be a list which contains five [1,2,3,4,5] as its element.
@@ -382,3 +382,23 @@ def combat_single_round(character_health, monster_health):
     else:
         combat_single_round_result = monster_initiative_combat(character_health, monster_health, initiative)
     return combat_single_round_result
+
+
+def combat_result(player_health):
+  """Update and return player's health after the combat.
+
+    :param player_health: an integer representing the target's health
+    :precondition: health must be a integer
+    :postcondition: update the health by correct amount after the combat deductions
+    :return: an integer representing player's updated health points
+  """
+    print("A wild runtime error jumps out from the bush! Let the fight begin!")
+    monster_health = 5
+    if flee_or_not() == 'Y':
+        player_health = flee(player_health)
+    else:
+        while player_health > 0 and monster_health > 0:
+            combat_result_single_round = combat_single_round(player_health, monster_health)
+            player_health = combat_result_single_round[0]
+            monster_health = combat_result_single_round[1]
+    return player_health
