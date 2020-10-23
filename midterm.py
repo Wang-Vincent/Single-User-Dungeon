@@ -23,7 +23,7 @@ def intro():
     )
 
     print(
-        '"I want to play a game." \n \n Says Handsome Chris, "In this game, you are trapped inside a 5*5, 25-cell mysterious space. \n \n Here you can enter [1, 2, 3, 4] to represent the north, south, east, and west to walk around in this space. \n \n However, when you reach the edge of the space, you will be blocked by an invisible wall. \n \n You have a starting 10 health points and 1d6 attack power. \n \n Each time you take a step, you will have a 25% chance of encountering a monster named Bug that looks like a bug, smells like a bug, and buzz like a bug. \n \n The monsters have 5 health points and 1d6 attack power. \n \n When you encounter a monster, you can choose to escape or fight until one party dies. \n \n If you choose to flee, the monster has a 10% chance to stab you back and deal 1d4 damage. If you choose to fight, it will be combat to the death. \n \n Before the start of each round of the battle, a 1d20 first strike decision will be made, and the party with the larger roll will strike first. \n \n The battle is over when either one of you dies. \n \n When you are not in battle, you can get 2 points of health regeneration if you move a step without encountering any monsters. \n \n If you successfully kill 7 bug monsters and survive, you will be victorious and wake up from this nightmare. \n \n If you die, you will fail and fall into a 72-hour sleep, thus missing your midterm hackathon and weekend."'
+        '"I want to play a game." \n \n Says Handsome Chris, "In this game, you are trapped inside a 5*5, 25-cell mysterious space. \n \n Here you can enter [1, 2, 3, 4] to represent the north, south, east, and west to walk around in this space. \n \n However, when you reach the edge of the space, you will be blocked by an invisible wall. \n \n You have a starting 10 health points and 1d6 attack power. \n \n Each time you take a step, you will have a 25% chance of encountering a monster named Bug that looks like a bug, smells like a bug, and buzz like a bug. \n \n The monsters have 5 health points and 1d6 attack power. \n \n When you encounter a monster, you can choose to escape or fight until one party dies. \n \n If you choose to flee, the monster has a 10% chance to stab you back and deal 1d4 damage. If you choose to fight, it will be combat to the death. \n \n Before the start of each round of the battle, a 1d20 first strike decision will be made, and the party with the larger roll will strike first. \n \n The battle is over when either one of you dies. \n \n When you are not in battle, you can get 2 points of health regeneration if you move a step without encountering any monsters. \n \n If you successfully  survive without dying, you win! \n \n Another version of you will pass the midterm Hackathon in a parallel universe. \n \n If you die, you will fail and fall into a 72-hour sleep, thus missing your hackathon and weekend in this universe."'
     )
 
 
@@ -53,7 +53,7 @@ def get_user_choice():
 def flee_or_not():
     """Prompt users to enter Y or N to represent their wish to flee or fight.
 
-    :precondition: users input must be Y/N and not be "quit"
+    :precondition: users input must be Y/N or "quit"
     :postcondition: return "Y" or "N" as string
     :return: a string of "Y" or "N" to represent users' input
     """
@@ -64,14 +64,14 @@ def flee_or_not():
 def exit_the_game(play_input):
     """Quit the game if user enter "quit".
     
-    :paramater: play_input: a string
+    :paramater play_input: a string
     :precondition: user must input "quit" to quit the game.
     :postcondition: quit the game if user input "quit". Otherwise return user input.
     :param play_input: user input strings.
     :return: user input string.
     """
     if play_input.lower() == 'quit':
-        print("you quit the game.")
+        print("You quit the game.")
         sys.exit()
     else:
         return play_input
@@ -80,7 +80,7 @@ def exit_the_game(play_input):
 def make_board():
     """create a 2D list as the board of the game.
 
-    :precondition: BOARD_COLUMN and BOARD_ROW must be greater than 0
+    :precondition: no precondition; function will always execute
     :postcondition: create a 5*5 2D list 
     :return: A 2D list act as the board of the game.
     """
@@ -232,16 +232,16 @@ def health_regen(character):
     :return: None
     >>> test_character = [2, 3, 6, 'test_player']   
     >>> health_regen(test_character)
-    >>> print(test_character)
-    [2, 3, 8, 'test_player']
+    >>> print(test_character[2])
+    8
     >>> test_character = [2, 3, 9, 'test_player']   
     >>> health_regen(test_character)
-    >>> print(test_character)
-    [2, 3, 10, 'test_player'] 
+    >>> print(test_character[2])
+    10 
     >>> test_character = [2, 3, 10, 'test_player']   
     >>> health_regen(test_character)
-    >>> print(test_character)
-    [2, 3, 10, 'test_player']  
+    >>> print(test_character[2])
+    10
     """
     if 1 <= character[2] <= 8:
         character[2] += 2
@@ -401,13 +401,13 @@ def monster_initiative_combat(character_health, monster_health, initiative):
 def combat_single_round(character_health, monster_health):
     """Determine if player or monster can attack first each combat round.
 
-      Determine whose initiative roll is larger and can attack first.
+    Determine whose initiative roll is larger and can attack first.
 
     :param player_health: an integer representing the player's health
     :param monster_health: an integer representing the monster's health
     :precondition: both parameter must be positive integers
-    :postcondition: whoever's rolls is larger in
-    :return: an integer representing player's updated health points   
+    :postcondition: whoever's rolls is larger initiates the combat
+    :return: a list consists of 2 integer representing the updated health of player and monster, and a nested list representing who attack first.   
     """
     initiative = get_initiative()
     if initiative[0] > initiative[1]:
@@ -447,6 +447,7 @@ def main():
     
     """
     doctest.testmod()
+    intro()
     board = make_board()
     character = make_character(get_user_name(), board)
     while not dead(character[2]):
