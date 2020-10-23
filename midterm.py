@@ -7,6 +7,17 @@ import random
 import sys
 
 
+def get_user_name():
+    """
+    Prompt users to enter their name.
+
+    :precondition: users input must not be "quit"
+    :postcondition: return users' input as string
+    :return: a string of users' input
+    """
+    return exit_the_game(input('Tell me your name, programmer.\n').upper())
+
+
 def exit_the_game(play_input):
     """
     Quit the game if user enter "quit".
@@ -47,7 +58,7 @@ def make_character(player_name, board):
     Create new character profile for new player_name
     
     :param player_name: a string representing the player's name
-    :param board: a two dimensional list representing the board
+    :param board: a two dimensional list representing the whole dungeon
     :precondition: board has to be a list which contains five [1,2,3,4,5] as its element.
     :postcondition: generate character profile with correct information
     :return: a list which contain the player's name, its health, start x postion and y position within board.
@@ -65,15 +76,20 @@ def move_character(character, direction):
     Move character's current position by 1 towards given direction
 
     :param character: a one dimensional list
-    :param character: a one dimensional list
-
+    :param direction: a string representing the direction of movement
+    :precondition: character list must contains character's current x and y position, its heal and name in order;
+    direction must one of 'east'
+    :postcondition: 
 
     """
-    if direction == 'north':
+    NORTH = ['north', 'n', 'up','u']
+
+
+    if direction in ['north', 'n', 'up','u']:
         character[1] += 1
-    elif direction == 'south':
+    elif direction in ['south', 's', 'down','d']:
         character[1] -= 1
-    elif direction == 'west':
+    elif direction in ['west', 'w', 'left','l']:
         character[0] -= 1
-    elif direction == 'east':
+    elif direction in ['east', 'e', 'right','r']:
         character[0] += 1
