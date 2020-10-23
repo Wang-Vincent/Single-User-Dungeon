@@ -168,25 +168,25 @@ def validate_and_move(character, direction, board):
     :return: True if the move is valid; Otherwise reture False and print error message if needed
 
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
-    >>> test_player = [3,5,3,'okopogo']
+    >>> test_player = [3,5,3,'Peter']
     >>> validate_and_move(test_player, "1", test_board)
     Ah, you can't go that way.
     False
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
-    >>> test_player = [3,5,3,'okopogo']
+    >>> test_player = [3,5,3,'Peter']
     >>> validate_and_move(test_player, "2", test_board)
     True
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
-    >>> test_player = [1,5,3,'okopogo']
+    >>> test_player = [1,5,3,'Peter']
     >>> validate_and_move(test_player, "3", test_board)
     Ah, you can't go that way.
     False
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
-    >>> test_player = [1,5,3,'okopogo']
+    >>> test_player = [1,5,3,'Peter']
     >>> validate_and_move(test_player, "4", test_board)
     True
     >>> test_board = [[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5],[1,2,3,4,5]]
-    >>> test_player = [3,5,3,'okopogo']
+    >>> test_player = [3,5,3,'Peter']
     >>> validate_and_move(test_player, 'wasd', test_board)
     Sorry, I can't understand you.
     False
@@ -406,7 +406,7 @@ def combat_single_round(character_health, monster_health):
     :param character_health: an integer representing the player's health
     :param monster_health: an integer representing the monster's health
     :precondition: both parameter must be positive integers
-    :postcondition: whoever's rolls is larger initiates the combat
+    :postcondition: whoever rolls is larger initiates the combat
     :return: a list consists of 2 integer representing the updated health of player and monster, and a nested list representing who attack first.   
     """
     initiative = get_initiative()
