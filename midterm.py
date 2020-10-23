@@ -3,20 +3,28 @@ This file must contain your main function. This is the file
 the repl.it interpreter will execute using the command python game.py.
 Team member: Sean Yang & Vincent Wang
 """
-import doctest
 import random
 import sys
+import doctest
 
 
 def intro():
 
-    print('You are a hardworking student in the prestigious BCIT CST program. It is the time of the year for midterm exam week again... \n \n Tonight is a Thursday night. You finished most of your midterms for other courses, leaving only one python midterm hackathon left to do on Friday. \n \n While you were studying hard for this last python midterm in your room, a mysterious voice, coming from nowhere, hypnotized you. \n \n When you finally regained your consciousness, you found out that you had been trapped inside a mysterious space with invisible walls around you. \n \n')
+    print(
+        'You are a hardworking student in the prestigious BCIT CST program. It is the time of the year for midterm exam week again... \n \n Tonight is a Thursday night. You finished most of your midterms for other courses, leaving only one python midterm hackathon left to do on Friday. \n \n While you were studying hard for this last python midterm in your room, a mysterious voice, coming from nowhere, hypnotized you. \n \n When you finally regained your consciousness, you found out that you had been trapped inside a mysterious space with invisible walls around you. \n \n'
+    )
 
-    print('Suddenly, you see a very handsome man with a long beard. As this man approaches you, he begins to talk: "Greeting. I am Chris. I am here to assist you, Programmer." \n \n As Handsome Chris introduces himself, he begins to explain your situation with you. \n \n')
+    print(
+        'Suddenly, you see a very handsome man with a long beard. As this man approaches you, he begins to talk: "Greeting. I am Chris. I am here to assist you, Programmer." \n \n As Handsome Chris introduces himself, he begins to explain your situation with you. \n \n'
+    )
 
-    print('"Unfortunately, you have been trapped inside your own nightmare in perpetuity by a mysterious evil force. \n \n In order to wake up from your nightmare and make it to your midterm hackathon on time, you must follow my instructions." \n \n')
+    print(
+        '"Unfortunately, you have been trapped inside your own nightmare in perpetuity by a mysterious evil force. \n \n In order to wake up from your nightmare and make it to your midterm hackathon on time, you must follow my instructions." \n \n'
+    )
 
-    print('"I want to play a game." \n \n Says Handsome Chris, "In this game, you are trapped inside a 5*5, 25-cell mysterious space. \n \n Here you can enter [1, 2, 3, 4] to represent the north, south, east, and west to walk around in this space. \n \n However, when you reach the edge of the space, you will be blocked by an invisible wall. \n \n You have a starting 10 health points and 1d6 attack power. \n \n Each time you take a step, you will have a 25% chance of encountering a monster named Bug that looks like a bug, smells like a bug, and buzz like a bug. \n \n The monsters have 5 health points and 1d6 attack power. \n \n When you encounter a monster, you can choose to escape or fight until one party dies. \n \n If you choose to flee, the monster has a 10% chance to stab you back and deal 1d4 damage. If you choose to fight, it will be combat to the death. \n \n Before the start of each round of the battle, a 1d20 first strike decision will be made, and the party with the larger roll will strike first. \n \n The battle is over when either one of you dies. \n \n When you are not in battle, you can get 2 points of health regeneration if you move a step without encountering any monsters. \n \n If you successfully kill 7 bug monsters and survive, you will be victorious and wake up from this nightmare. \n \n If you die, you will fail and fall into a 72-hour sleep, thus missing your midterm hackathon and weekend."')
+    print(
+        '"I want to play a game." \n \n Says Handsome Chris, "In this game, you are trapped inside a 5*5, 25-cell mysterious space. \n \n Here you can enter [1, 2, 3, 4] to represent the north, south, east, and west to walk around in this space. \n \n However, when you reach the edge of the space, you will be blocked by an invisible wall. \n \n You have a starting 10 health points and 1d6 attack power. \n \n Each time you take a step, you will have a 25% chance of encountering a monster named Bug that looks like a bug, smells like a bug, and buzz like a bug. \n \n The monsters have 5 health points and 1d6 attack power. \n \n When you encounter a monster, you can choose to escape or fight until one party dies. \n \n If you choose to flee, the monster has a 10% chance to stab you back and deal 1d4 damage. If you choose to fight, it will be combat to the death. \n \n Before the start of each round of the battle, a 1d20 first strike decision will be made, and the party with the larger roll will strike first. \n \n The battle is over when either one of you dies. \n \n When you are not in battle, you can get 2 points of health regeneration if you move a step without encountering any monsters. \n \n If you successfully kill 7 bug monsters and survive, you will be victorious and wake up from this nightmare. \n \n If you die, you will fail and fall into a 72-hour sleep, thus missing your midterm hackathon and weekend."'
+    )
 
 
 def get_user_name():
@@ -36,9 +44,12 @@ def get_user_choice():
     :postcondition: adjust player's coordinate base on their directional input.
     :return: a list representing player's updated coordinate.
     """
-    return exit_the_game(input('Tell me a number that represent the direction you want to go, programmer.\n [1 = north, 2 = south, 3 = west, 4 = east]\n'))
+    return exit_the_game(
+        input(
+            'Tell me a number that represent the direction you want to go, programmer.\n [1 = north, 2 = south, 3 = west, 4 = east]\n'
+        ))
 
-    
+
 def flee_or_not():
     """Prompt users to enter Y or N to represent their wish to flee or fight.
 
@@ -46,7 +57,8 @@ def flee_or_not():
     :postcondition: return "Y" or "N" as string
     :return: a string of "Y" or "N" to represent users' input
     """
-    return exit_the_game(input("You want to flee like a coward? [Y/N]\n").upper())
+    return exit_the_game(
+        input("You want to flee like a coward? [Y/N]\n").upper())
 
 
 def exit_the_game(play_input):
@@ -59,10 +71,10 @@ def exit_the_game(play_input):
     :return: user input string.
     """
     if play_input.lower() == 'quit':
-      print("you quit the game.")
-      sys.exit()
+        print("you quit the game.")
+        sys.exit()
     else:
-      return play_input
+        return play_input
 
 
 def make_board():
@@ -211,7 +223,6 @@ def check_back_stab():
     return random.randint(1, 10) == 10
 
 
-
 def health_regen(character):
     """Regenerate Player's health points if they are in range(1, 9).
     
@@ -249,7 +260,7 @@ def check_for_monsters():
     """
     return random.randint(1, 4) == 4
 
-    
+
 def flee(player_health):
     """check if player take damage from backstabbing when fleeing.
 
@@ -263,7 +274,9 @@ def flee(player_health):
     if check_back_stab():
         damage = random.randint(1, 4)
         player_health -= damage
-        print(f"While you are busy fleeing the scene, your enemy back-stabs you and deal {damage} damage!")
+        print(
+            f"While you are busy fleeing the scene, your enemy back-stabs you and deal {damage} damage!"
+        )
     else:
         print("You successfully escape! Live to fight another day!")
     return player_health
@@ -327,14 +340,19 @@ def player_initiative_combat(character_health, monster_health, initiative):
     :postcondition: create correct health result for both player and monster
     :return: a list contains damaged character_health and damaged monster_health; and print statements about battle result
     """
-    print(f"You roll {initiative[0]} and your silly opponent roll {initiative[1]}, "
-          f"now it's your turn to punish the bug!")
+    print(
+        f"You roll {initiative[0]} and your silly opponent roll {initiative[1]}, "
+        f"now it's your turn to punish the bug!")
     monster_health = deal_random_damage(monster_health)
     if not dead(monster_health):
-        print(f"The bug is still alive with {monster_health} remaining! It is about to strike you back!")
+        print(
+            f"The bug is still alive with {monster_health} remaining! It is about to strike you back!"
+        )
         character_health = deal_random_damage(character_health)
         if not dead(character_health):
-            print(f"You still have {character_health} health! Let's revenge in the next round of fight!")
+            print(
+                f"You still have {character_health} health! Let's revenge in the next round of fight!"
+            )
         else:
             print(f"You run out of HP. You are defeated by a runtime error.")
     else:
@@ -355,16 +373,23 @@ def monster_initiative_combat(character_health, monster_health, initiative):
     :return: a list contains damaged character_health and damaged monster_health, or a list contain the original health result if initiative roll is draw; and print statements about battle result
     """
     if initiative[0] == initiative[1]:
-        print(f"You roll {initiative[0]} and your silly opponent roll {initiative[1]}, no one is hurt!")
+        print(
+            f"You roll {initiative[0]} and your silly opponent roll {initiative[1]}, no one is hurt!"
+        )
     else:
-        print(f"You roll {initiative[0]} and your silly opponent roll {initiative[1]}, "
-              f"hang in there, the bug is about to strike you!")
+        print(
+            f"You roll {initiative[0]} and your silly opponent roll {initiative[1]}, "
+            f"hang in there, the bug is about to strike you!")
         character_health = deal_random_damage(character_health)
         if not dead(character_health):
-            print(f"Brave warrior! You are still alive with {character_health} HP. Now it's your time to fight back!")
+            print(
+                f"Brave warrior! You are still alive with {character_health} HP. Now it's your time to fight back!"
+            )
             monster_health = deal_random_damage(monster_health)
             if not dead(monster_health):
-                print(f"The bug still have {monster_health} health left! It seems angry!")
+                print(
+                    f"The bug still have {monster_health} health left! It seems angry!"
+                )
             else:
                 print(f"The bug's HP is now 0. You killed the bug!")
         else:
@@ -373,14 +398,18 @@ def monster_initiative_combat(character_health, monster_health, initiative):
 
 
 def combat_single_round(character_health, monster_health):
-    """
+    """determine if player or monster can attack first each combat round.
+
+      
     
     """
     initiative = get_initiative()
     if initiative[0] > initiative[1]:
-        combat_single_round_result = player_initiative_combat(character_health, monster_health, initiative)
+        combat_single_round_result = player_initiative_combat(
+            character_health, monster_health, initiative)
     else:
-        combat_single_round_result = monster_initiative_combat(character_health, monster_health, initiative)
+        combat_single_round_result = monster_initiative_combat(
+            character_health, monster_health, initiative)
     return combat_single_round_result
 
 
@@ -398,7 +427,35 @@ def combat_result(player_health):
         player_health = flee(player_health)
     else:
         while player_health > 0 and monster_health > 0:
-            combat_result_single_round = combat_single_round(player_health, monster_health)
+            combat_result_single_round = combat_single_round(
+                player_health, monster_health)
             player_health = combat_result_single_round[0]
             monster_health = combat_result_single_round[1]
     return player_health
+
+
+def game():
+    """
+    
+    Drive the program
+    
+    """
+
+    board = make_board()
+    character = make_character(get_user_name(), board)
+    while not dead(character[2]):
+        print(
+            f'{character[-1]}, you are now standing on ({character[0]},{character[1]}) with {character[2]} health.'
+        )
+        direction = get_user_choice()
+        if validate_and_move(character, direction, board):
+            if check_for_monsters():
+                character[2] = combat_result(character[2])
+            else:
+                health_regen(character)
+                print("You are safe and immersed in a healing breeze.")
+    print(f"You health bar is empty and you are dead. End of game.")
+
+    if __name__ == '__main__':
+        doctest.testmod(verbose=True)
+        game()
