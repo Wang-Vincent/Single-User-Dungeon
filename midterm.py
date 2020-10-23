@@ -27,7 +27,7 @@ def get_user_choice():
     :postcondition: adjust player's coordinate base on their directional input.
     :return: a list representing player's updated coordinate.
     """
-    return exit_the_game(input('Tell me a number that represent the direction you want to go, programmer.\n [1 = north, 2 = south, 3 = west, 4 = east]\n').strip().lower())
+    return exit_the_game(input('Tell me a number that represent the direction you want to go, programmer.\n [1 = north, 2 = south, 3 = west, 4 = east]\n'))
 
 
 def get_user_name():
@@ -250,5 +250,13 @@ def dead(character):
     :precondition: no precondition, the function will always execute successfully
     :postcondition: return 0 if character[2] is less than or equal to 0, otherwise it return nothing to represent false
     :return: a integer 0 if character[2] <= 0
+    >>> test_character = [2, 3, 10, 'test_player']   
+    >>> dead(test_character)
+    False 
+    >>> test_character = [2, 3, 0, 'test_player']   
+    >>> dead(test_character)
+    True 
     """
     return character[2] <= 0
+
+
