@@ -342,3 +342,31 @@ def player_initiative_combat(character_health, monster_health, initiative):
     return [character_health, monster_health]
 
 
+def monster_initiative_combat(character_health, monster_health, initiative):
+    """Create fight result for a monster initiative combat
+
+    Create the result health for both player and monster after a monster initiative combat
+
+    :param character_health: an integer representing the player's health
+    :param monster_health: an integer representing the monster's health
+    :param initiative: a list contain initiative values for both the player and monster
+    :precondition: player's health must be a integer between 1 to 10 inclusive; monster's health must be a integer between 1 to 5 inclusive, initiative must be a list contain initiative values between 1 to 20 inclusive for both the player and monster
+    :postcondition: create correct health result for both player and monster
+    :return: a list contains damaged character_health and damaged monster_health, or a list contain the original health result if initiative roll is draw; and print statements about battle result
+    """
+    if initiative[0] == initiative[1]:
+        print(f"You roll {initiative[0]} and your silly opponent roll {initiative[1]}, no one is hurt!")
+    else:
+        print(f"You roll {initiative[0]} and your silly opponent roll {initiative[1]}, "
+              f"hang in there, the bug is about to strike you!")
+        character_health = deal_random_damage(character_health)
+        if not dead(character_health):
+            print(f"Brave warrior! You are still alive with {character_health} HP. Now it's your time to fight back!")
+            monster_health = deal_random_damage(monster_health)
+            if not dead(monster_health):
+                print(f"The bug still have {monster_health} health left! It seems angry!")
+            else:
+                print(f"The bug's HP is now 0. You killed the bug!")
+        else:
+            print(f"You run out of HP. You are defeated by a runtime error.")
+    return [character_health, monster_health]
