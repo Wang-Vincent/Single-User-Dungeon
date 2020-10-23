@@ -7,6 +7,17 @@ import random
 import sys
 
 
+def get_user_choice():
+    """
+    Prompt users to enter the direction they wish to go.
+
+    :precondition: users input must be one of range(1, 4) that represent north, south, west, east and not be "quit"
+    :postcondition: adjust player's coordinate base on their directional input.
+    :return: a list representing player's updated coordinate.
+    """
+    return exit_the_game(input('Tell me a number that represent the direction you want to go, programmer.\n [1 = north, 2 = south, 3 = west, 4 = east]\n').strip().lower())
+
+
 def get_user_name():
     """
     Prompt users to enter their name.
@@ -76,20 +87,37 @@ def move_character(character, direction):
     Move character's current position by 1 towards given direction
 
     :param character: a one dimensional list
-    :param direction: a string representing the direction of movement
+    :param direction: an integer represent a specific direction, 1 = north, 2 = south, 3 = west, 4 = east
     :precondition: character list must contains character's current x and y position, its heal and name in order;
-    direction must one of 'east'
-    :postcondition: 
+    direction must one of 1, 2, 3, 4
+    :postcondition: move character's position by one towards correct direction
+    :return: None
 
+    >>> test_character = [2, 3, 6, 'test_player']
+    >>> move_character(test_character, 1)
+    >>> print(test_character)
+    [2, 4, 6, 'test_player']
+
+    >>> test_character = [2, 3, 6, 'test_player']
+    >>> move_character(test_character, 2)
+    >>> print(test_character)
+    [2, 2, 6, 'test_player']
+
+    >>> test_character = [2, 3, 6, 'test_player']
+    >>> move_character(test_character, 3)
+    >>> print(test_character)
+    [1, 3, 6, 'test_player']
+    
+    >>> test_character = [2, 3, 6, 'test_player']
+    >>> move_character(test_character, 4)
+    >>> print(test_character)
+    [3, 3, 6, 'test_player']
     """
-    NORTH = ['north', 'n', 'up','u']
-
-
-    if direction in ['north', 'n', 'up','u']:
+    if direction == 1 :
         character[1] += 1
-    elif direction in ['south', 's', 'down','d']:
+    elif direction == 2 :
         character[1] -= 1
-    elif direction in ['west', 'w', 'left','l']:
+    elif direction == 3:
         character[0] -= 1
-    elif direction in ['east', 'e', 'right','r']:
+    elif direction == 4:
         character[0] += 1
