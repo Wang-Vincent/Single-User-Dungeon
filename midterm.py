@@ -23,7 +23,7 @@ def intro():
     )
 
     print(
-        '"I want to play a game." \n \n Says Handsome Chris, "In this game, you are trapped inside a 5*5, 25-cell mysterious space. \n \n Here you can enter [1, 2, 3, 4] to represent the north, south, east, and west to walk around in this space. \n \n However, when you reach the edge of the space, you will be blocked by an invisible wall. \n \n You have a starting 10 health points and 1d6 attack power. \n \n Each time you take a step, you will have a 25% chance of encountering a monster named Bug that looks like a bug, smells like a bug, and buzz like a bug. \n \n The monsters have 5 health points and 1d6 attack power. \n \n When you encounter a monster, you can choose to escape or fight until one party dies. \n \n If you choose to flee, the monster has a 10% chance to stab you back and deal 1d4 damage. If you choose to fight, it will be combat to the death. \n \n Before the start of each round of the battle, a 1d20 first strike decision will be made, and the party with the larger roll will strike first. \n \n The battle is over when either one of you dies. \n \n When you are not in battle, you can get 2 points of health regeneration if you move a step without encountering any monsters. \n \n If you successfully  survive without dying, you win! \n \n Another version of you will pass the midterm Hackathon in a parallel universe. \n \n If you die, you will fail and fall into a 72-hour sleep, thus missing your hackathon and weekend in this universe."'
+        '"I want to play a game." \n \n Says Handsome Chris, "In this game, you are trapped inside a 5*5, 25-cell mysterious space. \n \n Here you can enter [1, 2, 3, 4] to represent the north, south, east, and west to walk around in this space. \n \n However, when you reach the edge of the space, you will be blocked by an invisible wall. \n \n You have a starting 10 health points and 1d6 attack power. \n \n Each time you take a step, you will have a 25% chance of encountering a monster named Bug that looks like a bug, smells like a bug, and buzz like a bug. \n \n The monsters have 5 health points and 1d6 attack power. \n \n When you encounter a monster, you can choose to escape or fight until one party dies. \n \n If you choose to flee, the monster has a 10% chance to stab you back and deal 1d4 damage. If you choose to fight, it will be combat to the death. \n \n Before the start of each round of the battle, a 1d20 first strike decision will be made, and the party with the larger roll will strike first. \n \n The battle is over when either one of you dies. \n \n When you are not in battle, you can get 2 points of health regeneration if you move a step without encountering any monsters. \n \n If you successfully  survive without dying, you win! \n \n Another version of you will pass the midterm Hackathon in a parallel universe. \n \n If you die, you will lose and fall into a 72-hour sleep, thus missing your hackathon and weekend in this universe."'
     )
 
 
@@ -53,7 +53,7 @@ def get_user_choice():
 def flee_or_not():
     """Prompt users to enter Y or N to represent their wish to flee or fight.
 
-    :precondition: users input must be Y/N or "quit"
+    :precondition: users input must be Y/N and not "quit"
     :postcondition: return "Y" or "N" as string
     :return: a string of "Y" or "N" to represent users' input
     """
@@ -237,7 +237,7 @@ def health_regen(character):
     >>> test_character = [2, 3, 9, 'test_player']   
     >>> health_regen(test_character)
     >>> print(test_character[2])
-    10 
+    10
     >>> test_character = [2, 3, 10, 'test_player']   
     >>> health_regen(test_character)
     >>> print(test_character[2])
@@ -291,12 +291,12 @@ def dead(health):
     :postcondition: tell if the target is dead or not correctly
     :return: True if target health is below 0; otherwise return False
     
+    >>> dead(-2)
+    True
     >>> dead(0)
-    True 
+    True
     >>> dead(2)
     False
-    >>> dead(-2)
-    True 
     """
     return health <= 0
 
